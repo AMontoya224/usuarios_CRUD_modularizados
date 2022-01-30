@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            Leer
+        </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='./css/style.css') }}">
+    </head>
+    <body>
+        <div class="contenedor">
+            <h1>
+                Todos los Usuarios
+            </h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="id">ID</th>
+                        <th>Nombre completo</th>
+                        <th>E-mail</th>
+                        <th>Fecha de creación</th>
+                        <th class="operaciones">Operaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td class="id">{{user["id"]}}</td>
+                            <td>{{user["first_name"]}} {{user["last_name"]}}</td>
+                            <td>{{user["email"]}}</td>
+                            <td>{{user["fecha"]}}</td>
+                            <td class="operaciones">
+                                <form action="/users/{{user['id']}}" method="POST">
+                                    <button type="submit" class="link"> 
+                                        Mostrar 
+                                    </button>
+                                </form>
+                                <form action="/edit/{{user['id']}}" method="POST"> 
+                                    <button type="submit" class="link"> 
+                                        Editar 
+                                    </button>
+                                </form>
+                                <form action="/users/{{user['id']}}/destroy" method="POST">
+                                    <button type="submit" class="link"> 
+                                        Borrar 
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <form action="/new" method="POST">
+                <button type="submit" class="link">
+                    Añadir nuevo Usuario
+                </button>
+            </form>
+        </div>
+    </body>
+</html>

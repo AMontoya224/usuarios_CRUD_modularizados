@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            Editar
+        </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='./css/style.css') }}">
+    </head>
+    <body>
+        <div class="contenedor box">
+            <div>
+                <form action="/users/{{users['id']}}/edit" method="POST">
+                    <h1>
+                        Editar Usuario {{users["id"]}}
+                    </h1>
+                    <div class="entrada">
+                        <label for="first_name">
+                            Nombre: 
+                        </label>
+                        <input type="text" id="first_name" name="first_name" value="{{users['first_name']}}" required/>
+                    </div>
+                    <div class="entrada">
+                        <label for="last_name">
+                            Apellido:
+                        </label>
+                        <input type="text" id="last_name" name="last_name" value="{{users['last_name']}}" required/>
+                    </div>
+                    <div class="entrada">
+                        <label for="email">
+                            E-mail:
+                        </label>
+                        <input type="text" id="email" name="email" value="{{users['email']}}" required/>
+                    </div>
+                    <button type="submit" class="btn green">
+                        Actualizar
+                    </button>
+                </form>
+                <form action="/users/{{users['id']}}" method="POST">
+                    <button type="submit" class="link margen">
+                        Mostrar
+                    </button>
+                </form>
+            </div>
+            <form action="/home" method="POST">
+                <button type="submit" class="link">
+                    Home
+                </button>
+            </form>
+        </div>
+    </body>
+</html>

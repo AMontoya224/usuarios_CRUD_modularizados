@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            Mostrar
+        </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='./css/style.css') }}">
+    </head>
+    <body>
+        <div class="contenedor box">
+            <div class="mostrar"> 
+                <h1>
+                    Usuario {{users["id"]}}
+                </h1>
+                <h5>
+                    Nombre completo: {{users["first_name"]}} {{users["last_name"]}}
+                </h5>
+                <h5>
+                    E-mail: {{users["email"]}}
+                </h5>
+                <h5>
+                    Fecha de creación: {{users["created_at"]}}
+                </h5>
+                <h5>
+                    Fecha de actualización: {{users["update_at"]}}
+                </h5>
+                <div class="box2">
+                    <form action="/edit/{{users['id']}}" method="POST"> 
+                        <button type="submit" class="btn green"> 
+                            Editar 
+                        </button>
+                    </form>
+                    <form action="/users/{{users['id']}}/destroy" method="POST">
+                        <button type="submit" class="btn red"> 
+                            Borrar 
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <form action="/home" method="POST">
+                <button type="submit" class="link">
+                    Home
+                </button>
+            </form>
+        </div>
+    </body>
+</html>
